@@ -1,0 +1,70 @@
+conexion(a,c,5).
+conexion(a,b,3).
+conexion(a,h,10).
+conexion(a,d,2).
+
+conexion(b,a,3).
+conexion(b,h,6).
+conexion(b,d,8).
+conexion(b,g,6).
+conexion(b,e,4).
+conexion(b,c,5).
+
+conexion(c,b,5).
+conexion(c,a,5).
+conexion(c,f,7).
+conexion(c,g,9).
+conexion(c,e,1).
+
+conexion(d,h,14).
+conexion(d,a,2).
+conexion(d,e,12).
+conexion(d,b,6).
+
+conexion(e,c,1).
+conexion(e,b,4).
+conexion(e,d,12).
+conexion(e,g,15).
+
+conexion(f,c,7).
+conexion(f,h,9).
+
+conexion(g,h,3).
+conexion(g,b,6).
+conexion(g,c,9).
+conexion(g,e,15).
+
+conexion(h,a,10).
+conexion(h,f,9).
+conexion(h,b,6).
+conexion(h,g,3).
+conexion(h,d,14).
+%-------------------------------------
+
+%-Existe conexion entre  el nodo A e d
+%conexion(a,d,_).
+%true
+
+%Con que nodos esta conectados f y cual  es el costo de cada conexion.
+%suma de los valores de cada nodo
+conectado(X,Y,Costo):-
+    writeln('Resultado: '),
+    (conexion(X,Y,Z1); conexion(Y,X,Z2)),
+    Costo is Z1 + Z2,
+    writeln('Los nodos estan conectados con un costo total:' + Costo).
+
+
+%construya una regla para determinar si un nodo tiene aristas.
+
+aristas(X):-
+    conexion(X,_,_).
+
+%construya una regla para determinar. Cual es el costo de ir de un nodo
+%X un nodo Y pasando un nodo Z.
+costos(Ini,Fin,Medio,Costo):-
+    conexion(Ini,Medio,C1),
+    conexion(Medio,Fin,C2),
+    (Costo is C1 + C2).
+
+
+
